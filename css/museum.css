@@ -1,0 +1,240 @@
+    /*清除默认样式*/
+* {
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+	}
+/*清除浮动对其他元素的影响*/
+ .clearfix:before,.clearfix:after {
+     content:"";
+     display:table; 
+  }
+  .clearfix:after {
+     clear:both;
+    }
+    /*版心设计*/
+.wrapper {
+    margin:0 auto;
+    width: 1200px;
+    background-color:#4faaff;
+    }
+.header {
+    height: 40px;
+    /*圆角属性*/
+    border-radius: 20px;
+}
+.header h1 {
+    color: aliceblue;
+    font-family: 华文中宋;
+    text-align: center;
+}
+
+.bodyer {
+    position: relative;
+    margin-top: 15px;
+    border-radius: 20px;
+    height: 600px;
+    perspective: 1200px;
+    
+    
+}
+/*定义3d旋转盒子属性*/
+.bodyer .rotates {
+   float: left;
+    position: relative;
+    margin: 200px 250px;
+    width: 300px;
+    height: 200px;
+    transform-style: preserve-3d;
+  
+    animation: trans 20s linear infinite;
+}
+/*鼠标放在旋转的盒子上，悬停（为什么不能是盒子里面的div悬停呢？）*/
+.rotates:hover{
+    animation-play-state: paused;
+}
+
+
+.rotates div:nth-child(n) {
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    background-size: 100% 100%;
+   /* font-size: 40px;
+    text-align: center;
+    line-height: 200px;
+    color: aliceblue;*/
+}
+.rotates div:nth-child(2n){
+    background-color: pink;
+
+}
+.rotates div:nth-child(2n+1){
+    background-color: yellow;
+
+
+}
+.rotates div:nth-child(1){
+    transform: rotateY(0) translateZ(300px);
+}
+.rotates div:nth-child(2){
+    transform: rotateY(60deg) translateZ(300px);
+    background-image: url(../images/jingcai.jpg);
+    background-size: 100% 100%;
+    color: aliceblue;
+}
+.rotates div:nth-child(3){
+    transform: rotateY(120deg) translateZ(300px);
+    /* background-image: url(../images/冰.jpg); */
+    color: aliceblue;
+}
+.rotates div:nth-child(4){
+    transform: rotateY(180deg) translateZ(300px);
+}
+.rotates div:nth-child(5){
+    background-image: url(../images/xuehua.jpg);
+    background-size: 100% 100%;
+    color: aliceblue;
+
+    transform: rotateY(240deg) translateZ(300px);
+}
+.rotates div:nth-child(6){
+    transform: rotateY(300deg) translateZ(300px);
+    background-image: url(../images/huoju.jpg);
+    background-size: 100% 100%;
+    color: aliceblue;
+}
+
+@keyframes trans {
+    0% {
+
+    }
+
+    0% {
+        transform: rotateY(360deg);
+    }
+    
+}
+
+/*注意样式的权重，否者容易被覆盖*/
+/*功能没出现想要的效果，这部分样式注释掉
+.bodyer .rotates div .liuyan1 {
+    float: left;
+ 
+    margin: 10px;
+    width: 80px;
+    height: 40px;
+    background-color: greenyellow;
+    font-size: 2px;
+    color: aqua;
+    text-align: left;
+    text-indent: 2em;
+    line-height: 10px;
+    溢出裁剪
+    overflow: hidden;
+
+    transition: all 2s;
+}
+*/
+/*.bodyer .rotates div .liuyan2 {
+    position: absolute;
+    left: 90px;
+没有实现一个页面里面包含多个留言板，布局出现了问题}
+
+.bodyer .rotates div .liuyan1:hover {
+    width: 100%;
+    height: 100%;
+    background-color: brown;
+    font-size: 16px;
+    line-height: 24px;
+}*/
+
+.bodyer .rotates h3{
+    text-align: center;
+    font-size: 20;
+}
+
+/*动态留言板的样式设计*/
+.bodyer .rotates .liuyan {
+    overflow: auto;
+}
+.bodyer .rotates .liuyan ul li {
+    margin: 5px;
+    border: 1px solid aqua;
+    font-size: 12px;
+}
+/* 删除按键右浮动 */
+.bodyer .rotates .liuyan ul li a {
+    float: right;
+}
+
+audio {
+    height: 20px;
+}
+/*此处用来布局时间css样式，从2022年冬奥会结束日0时算起*/
+.bodyer .date {
+    float: right;
+    margin: 48px 100px;
+    border-radius: 10px;
+    width: 150px;
+    height: 200px;
+    background-color: aqua;
+    text-align: center;
+}
+/*检查没有自己设置的属性效果，可能是语法错误，比如h3是没有一点的*/
+.bodyer .date h3 {
+    border-bottom:2px solid aliceblue;
+    text-align: center;
+}
+
+.bodyer .date span {
+    display: block;
+    margin: 4px auto;
+    width: 60px;
+    height: 30px;
+    /* background-color: rgb(218, 21, 21); */
+    font-size: 20px;
+}
+
+.bodyer .buttom {
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translate(-100%,-50%);
+
+    width: 80px;
+    height: 30px;
+    background-color: aqua;
+
+    border-radius: 0 15px 15px 0;
+}
+
+
+.bodyer .buttom a {
+	text-decoration:none;
+    color:black;
+    line-height: 30px;
+    font-weight: 700;
+	}
+
+.bodyer .date h2 {
+    font-size: 20px;
+}
+.bodyer .date textarea {
+   
+    width: 100%;
+    height: 150px;
+    background-color: aqua;
+    font-size: 16px;
+    font-family: 华文中宋;
+
+}
+
+.bodyer .date .but {
+    width: 50%;
+    height: 25px;
+    background-color: aqua;
+    font-size: 18px;
+    font-family: 华文中宋;
+    font-weight: 700;
+} 

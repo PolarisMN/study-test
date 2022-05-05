@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>火炬传递护手</title>
+    <link rel="stylesheet" href="css/huoju.css">
+</head>
+<body>
+
+    <div class="f-box">
+ 
+        <div class="wuhuan"></div>
+
+    </div>
+
+
+    <h2>北京冬奥会火炬传递点(可拖拽卷轴)</h2>
+
+    <div class="wrap">
+        <img 
+        src="../BeiJin/images/river_handle_left(1).png" 
+        class="handle handle-left" 
+        alt="">
+            
+        <img 
+         src="../BeiJin/images/river_handle_right(1).png" 
+        class="handle handle-right" 
+        alt="">
+        <div class="river-view" id="river">
+            <div class="river-images grab">
+                <img src="../BeiJin/images/01.png" alt="01">
+                <img src="../BeiJin/images/02.png" alt="02">
+                <img src="../BeiJin/images/03.png" alt="03">
+                <img src="../BeiJin/images/04.png" alt="04">
+                <img src="../BeiJin/images/05.png" alt="05">
+                <img src="../BeiJin/images/06.png" alt="06">
+                <img src="../BeiJin/images/07.png" alt="07">
+                <img src="../BeiJin/images/08.png" alt="08">
+                <img src="../BeiJin/images/09.png" alt="09">
+                <img src="../BeiJin/images/10.png" alt="10">
+                <img src="../BeiJin/images/11.png" alt="11">  
+            </div>
+        </div>
+    </div>
+
+    <div class="huojushou">
+
+    </div>
+    <button>我也要做火炬手</button>
+
+    <script>
+        const river = document.getElementById("river");
+
+        const store = {
+            move : false
+        }
+        // mousedown 鼠标按下
+        river.addEventListener('mousedown',(e) => {
+            // 取消事件的默认动作。            
+            e.preventDefault();
+            store.move = true;
+            store.startX = e.pageX + river.scrollLeft;
+        }) 
+        // mousemove 移动鼠标
+        document.addEventListener("mousemove",(e) => {
+            // 取消事件的默认动作。            
+            e.preventDefault();
+            if(store.move){
+                river.scrollLeft = store.startX - e.pageX;
+            }
+        })
+        document.addEventListener("mouseup",(e) => {
+            // 取消事件的默认动作。            
+            e.preventDefault();
+            store.move = false;
+        })
+
+        // var buttom = document.querySelector('buttom')
+        // var huojushou = document.querySelector('.huojushou')
+
+        // buttom.onclick=function(){
+        //     huojushou.style.display='block';
+        // }
+
+    </script>
+
+</body>
+</html>

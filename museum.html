@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>北京冬奥会纪念馆</title>
+<link rel="stylesheet" type="text/css" href="css/museum.css" />
+</head>
+<body>
+    <div class="wrapper header">
+        <h1>北京冬奥会纪念馆</h1>
+    </div>
+    <div class="wrapper bodyer">
+        <div class="rotates">
+            <div class="liuyan">
+                <h3>留言板</h3>
+                <ul class="list">
+                    
+                </ul>
+            </div>
+            
+        
+            <div>
+                <h3>精彩瞬间</h3>
+            </div>
+            <div>
+                <h3>我的吉祥物</h3>
+                <button class="tap1" >冰墩墩</button>
+                <button class="tap2" style="display:block">雪容融</button>
+            </div>
+            <div>
+                <h3>主题曲</h3>
+                <fieldset style="text-align: center; margin: 3px auto;">
+                    <legend>雪花 ~歌曲</legend>
+                    <audio controls='controls' src="music/北京爱乐合唱团 - 雪花 (2022北京冬奥会开幕式现场).mp3"></audio>
+
+                </fieldset>
+                <fieldset style="text-align: center; margin: 3px auto;">
+                    <legend>北京欢迎你</legend>
+                <audio controls='controls' src="music/陈若琳、房东的猫、何冲、井胧、唐汉霄、余佳运 - 2022北京欢迎你.mp3"></audio>
+                </fieldset>
+                <fieldset style="text-align: center; margin: 3px auto;">
+                    <legend>一起向未来</legend>
+                <audio controls='controls' src="music/华语群星 - 一起向未来.mp3"></audio>
+                </fieldset>
+                <fieldset style="text-align: center; margin: 3px auto;">
+                    <legend>我和你</legend>
+                </fieldset>   
+                    <audio controls='controls' src="music/刘欢、Sarah Brightman - 我和你.mp3"></audio>
+            </div>
+            <div>
+                <h3>雪花</h3>
+                
+            </div>
+            <div>
+                <h3>火炬</h3>
+            </div>
+        </div>
+
+    <!--此处用来布局时间，从2022年冬奥会结束日0时算起-->
+        <div class="date">
+            <h3>北京冬奥会闭幕</h3>
+            <h3>历史已经过去</h3>
+            <div>
+                <span class="ds"></span>
+                <span class="hs"></span>
+                <span class="ms"></span>
+                <span class="ss"></span>
+            </div>
+
+        </div>
+        <div class="date">
+            <h2>留言框</h2>
+            <textarea cols="18" rows="10"></textarea>
+            <!-- <input class="tex" type="text"> -->
+            <input class="but" type="button" value="发布">
+            
+        </div>
+        <script>
+            // 设置吉祥物框切换冰墩墩和雪容融
+            var tap1 = document.querySelector('.tap1')
+            var tap2 = document.querySelector('.tap2')
+            tap1.parentNode.style.backgroundImage = 'url(images/雪.png)'
+            tap1.onclick=function(){
+                tap2.parentNode.style.backgroundImage = 'url(images/冰.jpg)' 
+                };
+            tap2.onclick=function(){
+                
+                tap1.parentNode.style.backgroundImage = 'url(images/雪.png)'
+            }
+
+                
+
+            
+
+
+
+
+
+            var dhms = function(){
+            //计算时间的js代码
+            var nowTime = +new Date();  //当前时间总毫秒
+            var timeOut = +new Date('2022-2-20 0:0:0');//如果直接写2022，2,20，那么月份会比实际大一个月
+            var times = (nowTime - timeOut)/1000;//总秒数
+            var d = parseInt(times / 60 / 60 / 24);//天
+            d = d <10 ? '0'+ d : d;
+            var h = parseInt(times/60/60 % 24);//时
+            h = h <10 ? '0'+ h : h;
+            var m = parseInt(times/60 % 60);//分
+            m = m<10 ? '0'+ m : m;
+            var s = parseInt(times % 60);//秒
+            s = s <10 ? '0'+ s : s;
+
+            var ds = document.querySelector('.ds');
+            ds.innerHTML=d+'天';
+            var hs = document.querySelector('.hs');
+            hs.innerHTML=h+'时';
+            var ms = document.querySelector('.ms');
+            ms.innerHTML=m+'分';
+            var ss = document.querySelector('.ss');
+            ss.innerHTML=s+'秒';
+
+            }
+            //定时器会隔1s钟才开始刷新，所以让函数先执行一次，再执行定时器
+            dhms();
+            //设置定时器，间隔1s
+            window.setInterval(dhms,1000)
+
+            // 留言板块js代码+DOM
+            var list =document.querySelector('.list');
+            var tex =document.querySelector('textarea');
+            var but = document.querySelector('.but');
+
+            //注意，tex.innerHtml得到的是提示内容，而我们在框内输入的文字是赋值到value中
+            but.onclick = function(){
+                if (tex.value ==''){//判断文本框是否有内容
+                    alert('您没有输入内容');
+                }else{
+                var li = document.createElement('li');
+                li.innerHTML=tex.value;  // + "<a href='javascript:;'>删除</a>";
+                list.insertBefore(li,list.children[0]);
+                tex.value='';
+                
+                
+                //以下打算实现删除功能，还未找到bug所在，暂时先注释掉！！！
+
+                // var as = document.querySelector('a');
+                // console.log(as);
+                // // 删除出bug，没有出现效果：原因可能出现在length上，后面好好思考改进！
+                // for(var i = 0;i < as.length;i++){
+                //     as[i].onclick = function(){
+                //         list.removeChild(this.parentNode);
+                //}
+            //}
+                }
+            };
+
+            
+
+        </script>
+
+    <!--返回首页按钮-->
+        <div class="buttom">
+            <a href="#">返回首页</a>
+        </div>
+
+    </div>
+</body>
+</html>
